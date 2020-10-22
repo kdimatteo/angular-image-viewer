@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ImageViewerConfig, CustomImageEvent } from 'angular-x-image-viewer';
+import { ImageViewerConfig, CustomImageEvent } from '@clarivate/angular-image-viewer';
 
 
 @Component({
@@ -10,24 +10,48 @@ import { ImageViewerConfig, CustomImageEvent } from 'angular-x-image-viewer';
 export class AppComponent {
   title = 'angular-image-viewer';
   images = [
-    `https://sls-app-resources-bucket.s3.us-east-2.amazonaws.com/temp/1.2M.png?q=${1}`,
-    `https://sls-app-resources-bucket.s3.us-east-2.amazonaws.com/temp/520K.png?q=${2}`,
-    `https://sls-app-resources-bucket.s3.us-east-2.amazonaws.com/temp/43.6K.png?q=${3}`,
-    `https://sls-app-resources-bucket.s3.us-east-2.amazonaws.com/temp/16M.jpg?q=${4}`,
-    'https://i.ytimg.com/vi/nlYlNF30bVg/hqdefault.jpg',
-    'https://www.askideas.com/media/10/Funny-Goat-Closeup-Pouting-Face.jpg'
+    'http://www.fillmurray.com/400/400',
+    'http://www.fillmurray.com/600/550',
+    'http://www.fillmurray.com/450/400',
+    'http://www.fillmurray.com/510/500',
+
   ];
-
-  imageIndexOne = 0;
-
-  config: ImageViewerConfig = { customBtns: [{ name: 'print', icon: 'fa fa-print' }, { name: 'link', icon: 'fa fa-link' }] };
+  imageIndex = 0;
+  imageName: string;
+  footerTexts = [
+    'Image',
+    'of',
+    'View previous or next image',
+    'using < > on the keyboard'
+  ];
+  config: ImageViewerConfig = {
+    wheelZoom: true,
+    allowKeyboardNavigation: true,
+    primaryColor: '#008474',
+    btnShow: {
+      rotateClockwise: true,
+      rotateCounterClockwise: true,
+      zoomIn: true,
+      zoomOut: true
+    },
+    btnIcons: {
+      zoomIn: 'fa fa-plus',
+      zoomOut: 'fa fa-minus',
+      rotateClockwise: 'fa fa-refresh',
+      rotateCounterClockwise: 'fa fa-undo',
+      next: 'fa fa-chevron-right',
+      prev: 'fa fa-chevron-left',
+      fullscreen: 'fa fa-arrows-alt',
+    },
+    btnClass: 'default',
+    customBtns: [{ name: 'print', icon: 'fa fa-print' }, { name: 'link', icon: 'fa fa-link' }]
+  };
 
   handleEvent(event: CustomImageEvent) {
-    console.log(`${event.name} has been click on img ${event.imageIndex + 1}`);
-
+    // console.log(`${event.name} has been click on img ${event.imageIndex + 1}`);
     switch (event.name) {
       case 'print':
-        console.log('run print logic');
+        // console.log('run print logic');
         break;
     }
   }

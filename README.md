@@ -1,7 +1,7 @@
 
-# Angular X Image Viewer
+# Angular Image Viewer
 
-demo: https://kdimatteo.github.io/angular-image-viewer/
+demo: https://clarivate.github.io/angular-image-viewer/
 
 A configurable Angular image viewer component, compatible with Angular 8 
 
@@ -19,7 +19,7 @@ A configurable Angular image viewer component, compatible with Angular 8
 To use default configuration, simply import the ImageViewerModule into your module, like so:
 
 ```javascript
-import { AngularImageViewerModule } from "angular-x-image-viewer";
+import { AngularImageViewerModule } from "@clarivate/angular-image-viewer";
 
 @NgModule({
   //...
@@ -34,10 +34,20 @@ import { AngularImageViewerModule } from "angular-x-image-viewer";
 Then, add the component to your template, providing an array of image URLs. You can also optionally add an index, to indicate which image should be shown first. The default will be the first item in the array.
 
 ```html
-<angular-image-viewer  [src]="images" [(index)]="imageIndex"></angular-image-viewer>
+<div class="container">
+  <angular-image-viewer  [src]="images" [(index)]="imageIndex"></angular-image-viewer>
+</div>
 ```
 
-By default, the image viewer will fill its container. If you wish to restrict the size, simply place it within a div, and set the size constraints on the div.
+By default, the image viewer will fill its container. If you wish to restrict the size, simply place it within a div, and set the size constraints on the div:
+
+```css
+.container {
+  position: relative;
+  height: 600px;
+  width: 600px;
+}
+```
 
 ---
 
@@ -51,7 +61,8 @@ The configuration object is structured as below. All values are optional, and if
 {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
   zoomFactor: 0.1, // The amount that the scale will be increased by
-  containerBackgroundColor: '#ccc', // The color to use for the background. This can provided in hex, or rgb(a).
+  containerBackgroundColor: '#e4dede', // The color to use for the background. This can provided in hex, or rgb(a).
+  primaryColor: '', // Color to use for all buttons image.
   wheelZoom: true, // If true, the mouse wheel can be used to zoom in
   allowFullscreen: true, // If true, the fullscreen button will be shown, allowing the user to enter fullscreen mode
   allowKeyboardNavigation: true, // If true, the left / right arrow keys can be used for navigation
@@ -95,6 +106,13 @@ handleEvent(event: customImageEvent) {
     }
 }
 ```
+
+## Local setup for this branch:
+
+* Add respective version of this component. yarn add @clarivate/angular-image-viewer.
+* yarn serve-lib is to compile your changes in projects\angular-image-viewer and it will update in dist folder. But to reflect in UI, update projects\angular-image-viewer\ng-package.json file dest to node_module location. "dest": "../../node_modules/@clarivate/angular-image-viewer",
+* yarn start to get the application up.
+
 
 Note: This package is built using the idea from ngx-image-viewer(https://github.com/jpilfold/ngx-image-viewer). It has advantage that it uses latest dependencies which fixes Issue #23 & #29  i.e related to FullScreen Image. 
 
