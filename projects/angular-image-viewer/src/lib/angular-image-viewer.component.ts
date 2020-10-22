@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener, Optional, Inject, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { ImageViewerConfig } from './models/image-viewer-config.model';
 import { CustomImageEvent } from './models/custom-image-event-model';
-import { DomSanitizer } from '@angular/platform-browser';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
 const DEFAULT_CONFIG: ImageViewerConfig = {
@@ -38,7 +37,7 @@ const DEFAULT_CONFIG: ImageViewerConfig = {
 })
 export class AngularImageViewerComponent implements OnInit, OnChanges {
 
-  @ViewChild(CdkDrag) cdkDrag: CdkDrag;
+  @ViewChild(CdkDrag, null) cdkDrag: CdkDrag;
 
   @Input()
   src: string[];
